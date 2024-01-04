@@ -23,34 +23,47 @@ public class FlipperController : MonoBehaviour
 
     void CheckTouch(){
         if(Input.touchCount > 0){
-            Touch touch = Input.GetTouch(0);
-            Touch touch1 = Input.GetTouch(0);
-            Debug.Log("touch1");
-            if(Input.touchCount > 1){
-                touch1 = Input.GetTouch(1);
-                Debug.Log("touch2");
+            for(int i = 0; i < Input.touchCount; i++){
+                Touch touch = Input.GetTouch(i);
+                if(touch.phase == TouchPhase.Began){
+                    if(touch.position.x > screenWidth/2){
+                        rightTouched = true;
+                    }
+                    if(touch.position.x < screenWidth/2){
+                        leftTouched = true;
+                    }
+                }
+
+                if(touch.phase == TouchPhase.Ended){
+                    if(touch.position.x > screenWidth/2){
+                        rightTouched = false;
+                    }
+                    if(touch.position.x < screenWidth/2){
+                        leftTouched = false;
+                    }
+                }
             }
                 
             
             
 
-            if(touch.phase == TouchPhase.Began || touch1.phase == TouchPhase.Began){
-                if(touch.position.x > screenWidth/2 || touch1.position.x > screenWidth/2 ){
-                    rightTouched = true;
-                }
-                if(touch.position.x < screenWidth/2 || touch1.position.x < screenWidth/2 ){
-                    leftTouched = true;
-                }
-            }
+            // if(touch.phase == TouchPhase.Began || touch1.phase == TouchPhase.Began){
+            //     if(touch.position.x > screenWidth/2 || touch1.position.x > screenWidth/2 ){
+            //         rightTouched = true;
+            //     }
+            //     if(touch.position.x < screenWidth/2 || touch1.position.x < screenWidth/2 ){
+            //         leftTouched = true;
+            //     }
+            // }
 
-            if(touch.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended){
-                if(touch.position.x > screenWidth/2 || touch1.position.x > screenWidth/2 ){
-                    rightTouched = false;
-                }
-                if(touch.position.x < screenWidth/2 || touch1.position.x < screenWidth/2 ){
-                    leftTouched = false;
-                }
-            }
+            // if(touch.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended){
+            //     if(touch.position.x > screenWidth/2 || touch1.position.x > screenWidth/2 ){
+            //         rightTouched = false;
+            //     }
+            //     if(touch.position.x < screenWidth/2 || touch1.position.x < screenWidth/2 ){
+            //         leftTouched = false;
+            //     }
+            // }
 
             
             // if(touch.position.x > screenWidth/2){
